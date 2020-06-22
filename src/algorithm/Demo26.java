@@ -12,7 +12,7 @@ package algorithm;
  * @author Liq
  * @date 2020/6/18
  */
-public class Demo01 {
+public class Demo26 {
 
     public static void main(String[] args) {
 
