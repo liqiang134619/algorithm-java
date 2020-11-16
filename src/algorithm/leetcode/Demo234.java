@@ -1,6 +1,4 @@
-package algorithm;
-
-import java.util.List;
+package algorithm.leetcode;
 
 /**
  * 请判断一个链表是否为回文链表。
