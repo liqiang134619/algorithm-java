@@ -12,13 +12,13 @@ public class Traversal {
 
     // 先序递归
     // 12485367
-    private void preorderTraversal(TreeNode node) {
+    private void preOrderTraversal(TreeNode node) {
         if(node == null) {
          return;
         }
         System.out.println(node.val);
-        preorderTraversal(node.left);
-        preorderTraversal(node.right);
+        preOrderTraversal(node.left);
+        preOrderTraversal(node.right);
     }
 
 

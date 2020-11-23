@@ -1,4 +1,4 @@
-package algorithm;
+package algorithm.dynamic;
 
 import sun.font.GlyphLayout;
 
@@ -26,6 +26,7 @@ public class Demo02 {
         return  maxSum;
     }
 
+    // 动态规划
     public static int maxSubArray2(int[] nums) {
 
         int pre = 0;
@@ -39,6 +40,7 @@ public class Demo02 {
 
 
 
+    // 分而治之
     public static int maxSubArray3(int[] nums) {
         return divideAndConquer(nums, 0,nums.length - 1);
     }

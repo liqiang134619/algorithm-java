@@ -5,6 +5,7 @@ import com.sun.org.apache.bcel.internal.generic.SWAP;
 import java.util.Arrays;
 
 /**
+ * O(nlogn)
  * 堆排序
  * @author liq
  * @date 2020/11/16
@@ -18,10 +19,13 @@ public class HeapSortDemo {
 
         // 构造堆  O(n) 线性复杂度
         for (int i = a.length / 2 - 1; i >= 0; i--) {
+            // 构建二叉堆
             percDown(a, i, a.length);
         }
         for (int i = a.length - 1; i > 0; i--) {
+            // 最后一个元素交换上来
             swap(a,0,i);
+            // 继续构建二叉堆
             percDown(a,0,i);
         }
     }

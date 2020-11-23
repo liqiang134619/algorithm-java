@@ -3,6 +3,7 @@ package algorithm.sort;
 import java.util.Arrays;
 
 /**
+ * O(n^2)
  * @author liq
  * @date 2020/11/18
  */
