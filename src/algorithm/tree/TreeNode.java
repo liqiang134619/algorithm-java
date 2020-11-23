@@ -1,6 +1,8 @@
 package algorithm.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -14,6 +16,41 @@ public class TreeNode {
     TreeNode(int val) {
         this.val = val;
     }
+    TreeNode(int val,TreeNode left, TreeNode right) {
+        this.val = val;
+        this.left = left;
+        this.right = right;
+    }
+
+
+    public static  TreeNode createTreeNode(int[] nums,int index) {
+
+        TreeNode tn = null;
+        if(index < nums.length) {
+            int val = nums[index];
+            tn = new TreeNode(val);
+            tn.left = createTreeNode(nums,2*index+1);
+            tn.right = createTreeNode(nums,2*index+2);
+            return tn;
+        }
+        return  tn;
+    }
+
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> resList = new ArrayList<>();
+        preorderTraversal2(root,resList);
+        return resList;
+    }
+    private void preorderTraversal2(TreeNode root,List<Integer> list) {
+        if(root == null) {
+            return;
+        }
+        list.add(root.val);
+        preorderTraversal2(root.left,list);
+        preorderTraversal2(root.right,list);
+    }
+
 
 
     // 递归求高度

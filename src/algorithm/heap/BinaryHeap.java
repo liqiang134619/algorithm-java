@@ -97,6 +97,7 @@ public class BinaryHeap<T extends Comparable<? super T>> {
 
         // 开始上虑
         for (array[ 0 ] = t; t.compareTo(array[hole / 2]) < 0; hole /= 2) {
+            // 避免三次交换
             array[hole] = array[hole / 2];
         }
         array[hole] = t;
