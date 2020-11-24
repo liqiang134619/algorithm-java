@@ -1,6 +1,7 @@
 package algorithm.tree;
 
 
+import javax.xml.soap.Node;
 import java.util.*;
 
 /**
@@ -14,6 +15,45 @@ public class Traversal {
     int postIndex;
     int[] inOrder;
 
+    private Map<Integer,Integer> indexMap;
+
+    // 先序和中序构造二叉树
+    public TreeNode buildTree2(int[] preorder, int[] inOrder) {
+        this.indexMap = new HashMap<>();
+        for (int i = 0; i < inOrder.length; i++) {
+            indexMap.put(inOrder[i],i);
+        }
+        return helper2(preorder,0,preorder.length -1,0,inOrder.length -1);
+    }
+
+    /**
+     *
+     * @param preOrder
+     * @param preLeft 前序中左子树的起始点
+     * @param preRight 前序中右子树的起始点
+     * @param inLeft 中序左子树起始点
+     * @param inRight 中序右子树起始点
+     * @return
+     */
+    private TreeNode helper2(int[] preOrder, int preLeft, int preRight, int inLeft, int inRight) {
+        if(preLeft > preRight || inLeft > inRight) {
+            return null;
+        }
+        // 前序第一个节点为根
+        int rootVal = preOrder[preLeft];
+        TreeNode treeNode = new TreeNode(rootVal);
+        int pIndex = indexMap.get(rootVal);
+
+        treeNode.left = helper2(preOrder,preLeft+1,pIndex-inLeft + preLeft,
+                inLeft,pIndex -1);
+        treeNode.right = helper2(preOrder,pIndex-inLeft + preLeft + 1,preRight,
+                pIndex + 1,inRight);
+        return treeNode;
+
+    }
+
+
+    // 中序和后序构造二叉树
     public TreeNode buildTree(int[] inorder, int[] postorder) {
         this.postOrder = postorder;
         this.inOrder = inorder;
@@ -26,6 +66,7 @@ public class Traversal {
         if(left > right) {
             return null;
         }
+        // 构造的后序中的节点值
         int rootVal = postOrder[postIndex];
         postIndex--;
 
@@ -33,7 +74,7 @@ public class Traversal {
         TreeNode treeNode = new TreeNode(rootVal);
 
         // 查询出此节点在中序的位置
-        int j;
+        int j= 0;
         for (int i = 0; i < inOrder.length; i++) {
             if(inOrder[i] == treeNode.val) {
                 j = i;
@@ -41,9 +82,10 @@ public class Traversal {
             }
         }
 
+        treeNode.right = helper(j+1,right);
+        treeNode.left = helper(left,j-1);
 
-
-
+        return treeNode;
     }
 
 
@@ -103,24 +145,6 @@ public class Traversal {
 
     }
 
-    // 中序遍历非递归：
-    private void inOrderTraversal(TreeNode node) {
-        if(node == null) {
-            return;
-        }
-        Stack<TreeNode> stack = new Stack<>();
-        while(!stack.isEmpty() || node != null) {
-            while (node != null) {
-                stack.push(node);
-                node = node.left;
-            }
-            TreeNode pop = stack.pop();
-            System.out.println(pop.val);
-            node = pop.right;
-
-        }
-    }
-
 
     // 中序
     // 84251637
@@ -131,6 +155,24 @@ public class Traversal {
         inorderTraversal(node.left);
         System.out.println(node.val);
         inorderTraversal(node.right);
+    }
+
+    // 中序遍历非递归
+    private void  inOrderTraversal(TreeNode node) {
+        if(node == null) {
+            return;
+        }
+        Stack<TreeNode> stack = new Stack<>();
+
+        while(!stack.isEmpty() || node != null) {
+            while(node !=null ){
+                stack.push(node);
+                node = node.left;
+            }
+            TreeNode pop = stack.pop();
+            System.out.println(pop.val);
+            node = pop.right;
+        }
     }
 
     // 后序
