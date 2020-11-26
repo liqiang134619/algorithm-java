@@ -21,6 +21,75 @@ public class Bst {
 
 
     /**
+     * 二叉搜索树删除指定节点
+     * @param root
+     * @param key
+     * @return
+     */
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if(root == null) {
+            return root;
+        }
+        if(key < root.val) {
+            root.left =  deleteNode(root.left,key);
+        } else if(key > root.val) {
+            root.right =  deleteNode(root.right,key);
+        } else if(root.left != null && root.right !=null) {
+            /*
+            // 找到删除的元素了但有左右儿子
+            // 找到右子树的最小元素替换删除
+            TreeNode node = root.right;
+            TreeNode node2 = null;
+            while(node != null) {
+                node2 = node;
+                node = node.left;
+            }
+            root.val = node2.val;
+            root.right = deleteNode(root.right,root.val);*/
+
+            // 直接删除右子树最小元素即可
+            TreeNode node = root.right;
+            TreeNode node2 = null;
+            while(node != null) {
+                node2 = node;
+                node = node.left;
+            }
+            root.val = node2.val;
+                root = root.right;
+                while(root.left !=null) {
+                    root = root.left;
+                }
+                root = null;
+
+
+        } else {
+            root = (root.left != null?root.left:root.right);
+        }
+        return root;
+    }
+
+    /**
+     * 二叉搜索搜索树的插入
+     * @param root
+     * @param val
+     * @return
+     */
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+
+        if(root ==null) {
+            root = new TreeNode(val);
+            return root;
+        }
+        if(val < root.val) {
+            root.left =  insertIntoBST(root.left,val);
+        }
+        if(val > root.val) {
+            root.right = insertIntoBST(root.right,val);
+        }
+        return root;
+    }
+
+    /**
      * 二叉搜索树搜索指定节点
      * @param root
      * @param val
@@ -39,6 +108,27 @@ public class Bst {
         return searchBST(root.right,val);
     }
 
+
+    /**
+     * 二叉搜索树搜索指定节点
+     * @param root
+     * @param val
+     * @return
+     */
+    public TreeNode searchBST2(TreeNode root, int val) {
+
+        while(root!=null) {
+            if(root.val == val) {
+                return root;
+            } else if(val < root.val) {
+                root = root.left;
+            } else {
+                root = root.right;
+            }
+        }
+
+        return null;
+    }
 
 
 
