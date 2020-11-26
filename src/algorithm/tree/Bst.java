@@ -13,6 +13,90 @@ public class Bst {
 
 
 
+
+
+    public Bst(){
+
+    }
+
+
+    /**
+     * 二叉搜索树搜索指定节点
+     * @param root
+     * @param val
+     * @return
+     */
+    public TreeNode searchBST(TreeNode root, int val) {
+        if(root == null) {
+            return null;
+        }
+        if(root.val == val) {
+            return root;
+        }
+        if(val < root.val) {
+            return searchBST(root.left,val);
+        }
+        return searchBST(root.right,val);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Stack<TreeNode> stack = new Stack<>();
+
+    /**
+     * 二叉搜索树迭代器： 二叉树中序遍历性质
+     * @param root
+     */
+    public Bst(TreeNode root) {
+        helper(root);
+
+    }
+
+    private void helper(TreeNode node) {
+        while(node !=null) {
+            stack.push(node);
+            node = node.left;
+        }
+
+    }
+
+    /** @return the next smallest number */
+    public int next() {
+        TreeNode pop = stack.pop();
+        if(pop.right!=null) {
+            helper(pop.right);
+        }
+        return pop.val;
+
+    }
+
+    /** @return whether we have a next smallest number */
+    public boolean hasNext() {
+        return stack.size() > 0;
+    }
+
+    private void levelOrder(TreeNode node,List<Integer> list) {
+        if(node == null) {
+            return;
+        }
+        levelOrder(node.left,list);
+        list.add(node.val);
+        levelOrder(node.right,list);
+    }
+
+
+
+
     /**
      * 判定一个树是否是bst 解法2
      * @param root
@@ -47,6 +131,7 @@ public class Bst {
 
     /**
      * 判定一个树是否是bst
+     * 二叉搜索树中序遍历后的性质
      * @param root
      * @return
      */
