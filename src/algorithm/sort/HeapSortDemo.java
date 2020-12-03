@@ -19,7 +19,7 @@ public class HeapSortDemo {
 
         // 构造堆  O(n) 线性复杂度
         for (int i = a.length / 2 - 1; i >= 0; i--) {
-            // 构建二叉堆
+            // 从底部构建二叉堆
             percDown(a, i, a.length);
         }
         for (int i = a.length - 1; i > 0; i--) {
@@ -45,6 +45,7 @@ public class HeapSortDemo {
             child = (2 * i + 1);
 
             // 有右孩子且右孩子节点大于左孩子节点 不是最后一个节点 && 左孩子小于右孩子
+            // 就是找到左右孩子的最大节点
             if(child != length -1 && a[child] < a[child + 1]) {
                 child++;
             }
