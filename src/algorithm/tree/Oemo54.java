@@ -34,4 +34,30 @@ public class Oemo54 {
 
         return list.get(list.size() - k);
     }
+
+
+
+    int count = 0;
+    int res = -1;
+
+    public int kthLargest1(TreeNode root, int k) {
+        if(root == null) {
+            return -1;
+        }
+        helper(root,k);
+        return res;
+    }
+
+    private void helper(TreeNode root, int k) {
+        if(root == null) {
+            return;
+        }
+        helper(root.right,k);
+        count++;
+        if(count == k) {
+            res = root.val;
+            return;
+        }
+        helper(root.left,k);
+    }
 }

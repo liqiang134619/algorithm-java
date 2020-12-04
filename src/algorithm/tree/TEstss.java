@@ -16,11 +16,11 @@ public class TEstss {
 
 
     public static void main(String[] args) {
-        String s ="^T1\\d{20}$";
+        String s ="^(T1|T2)\\d{2}$";
 
         Pattern p = Pattern.compile(s);
 
-        Matcher matcher = p.matcher("T1222222222222222s2222");
+        Matcher matcher = p.matcher("T2122");
         boolean b = matcher.find();
         System.out.println(b);
 
