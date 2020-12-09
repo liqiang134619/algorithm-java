@@ -22,6 +22,7 @@ public class InsertionSortDemo {
         }
     }
 
+    // 在插入排序的基础上添加一个增量序列
     private void shellSort(int[] a) {
         int j;
         // shell 增量序列
