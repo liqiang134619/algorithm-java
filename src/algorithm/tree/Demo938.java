@@ -9,6 +9,7 @@ public class Demo938 {
 
     int sum = 0;
 
+    // 中序遍历，需要遍历所有的节点
 //    public int rangeSumBST(TreeNode root, int low, int high) {
 //
 //        dfs(root,low,high);
@@ -37,6 +38,7 @@ public class Demo938 {
         if (root.val > R) {
             return rangeSumBST(root.left, L, R);
         }
+        // L< root.val < R
         return root.val + rangeSumBST(root.left, L, R) + rangeSumBST(root.right, L, R);
     }
 
