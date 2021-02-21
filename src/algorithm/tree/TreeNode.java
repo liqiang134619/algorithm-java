@@ -10,10 +10,10 @@ import java.util.Queue;
  * @date 2020/11/15
  */
 public class TreeNode {
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int val) {
+    public int val;
+    public TreeNode left;
+    public TreeNode right;
+    public TreeNode(int val) {
         this.val = val;
     }
     TreeNode(int val,TreeNode left, TreeNode right) {
@@ -60,7 +60,7 @@ public class TreeNode {
         } else  {
             int leftH = maxDept1(root.left);
             int rightH = maxDept1(root.right);
-            return Math.max(leftH,rightH);
+            return Math.max(leftH,rightH)+1;
         }
     }
 

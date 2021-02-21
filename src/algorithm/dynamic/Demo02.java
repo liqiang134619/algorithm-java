@@ -26,6 +26,27 @@ public class Demo02 {
         return  maxSum;
     }
 
+
+    // 动态规划
+    public static int maxSubArray4(int[] nums) {
+        int len = nums.length;
+        if (len <= 0) {
+            return 0;
+        }
+        // 以i结尾的子串的最大值
+        int[] dp = new int[len];
+        dp[0] = nums[0];
+        for (int i = 1; i < len; i++) {
+            dp[i] = Math.max(nums[i],dp[i-1] + nums[i]);
+        }
+        int res = Integer.MIN_VALUE;
+        for (int value : dp) {
+            res = Math.max(res, value);
+        }
+        return res;
+
+    }
+
     // 动态规划
     public static int maxSubArray2(int[] nums) {
 
