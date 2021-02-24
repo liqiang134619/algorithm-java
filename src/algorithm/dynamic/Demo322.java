@@ -1,6 +1,5 @@
 package algorithm.dynamic;
 
-import com.sun.tools.corba.se.idl.InterfaceGen;
 
 import java.util.Arrays;
 import java.util.HashMap;

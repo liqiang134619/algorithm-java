@@ -1,6 +1,5 @@
 package algorithm.tree;
 
-import com.sun.tools.hat.internal.model.Root;
 
 import java.util.HashMap;
 import java.util.LinkedList;

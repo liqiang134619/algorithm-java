@@ -1,6 +1,5 @@
 package algorithm.tree;
 
-import com.sun.tools.corba.se.idl.InterfaceGen;
 
 import java.time.temporal.ValueRange;
 import java.util.ArrayList;
@@ -44,7 +43,11 @@ public class Demo113 {
 
     public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
 
-        dfs(root,targetSum);
+        if(root == null) {
+            return res;
+        }
+        path.offerLast(root.val);
+        dfs2(root,targetSum - root.val);
 
         return res;
 
@@ -68,6 +71,40 @@ public class Demo113 {
         path.pollLast();
 
     }
+
+    // 明确出回溯
+    private void dfs2(TreeNode root, int targetSum) {
+        if(root.left == null && root.right == null && targetSum == 0) {
+             res.add(new LinkedList<Integer>(path));
+             return;
+        }
+
+        if(root.left == null && root.right == null) {
+            return;
+        }
+
+
+        if(root.left != null) {
+            path.offerLast(root.left.val);
+            dfs2(root.left,targetSum - root.left.val);
+            // 回溯
+            path.pollLast();
+        }
+
+        if(root.right != null) {
+            path.offerLast(root.right.val);
+            dfs2(root.right,targetSum - root.right.val);
+            // 回溯
+            path.pollLast();
+        }
+
+    }
+
+
+
+
+
+
 
     public static void main(String[] args) {
         Demo113 demo113 = new Demo113();
