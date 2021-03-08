@@ -102,8 +102,10 @@ public class Demo51 {
     }
 
     public static void main(String[] args) {
-        List<List<String>> lists = new Demo51().solveNQueens(4);
-        System.out.println(lists);
+//        List<List<String>> lists = new Demo51().solveNQueens(4);
+//        System.out.println(lists);
+
+        System.out.println(true||false||false||false);
     }
 
 
