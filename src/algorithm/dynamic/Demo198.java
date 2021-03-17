@@ -1,5 +1,7 @@
 package algorithm.dynamic;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 /**
@@ -60,10 +62,39 @@ public class Demo198 {
         return res;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {114,117,207,117,235,82,90,67,143,146,53,108,200,91,80,223,58,170,110,236,81,90,222,160,165,195,187,199,114,235,197,187,69,129,64,214,228,78,188,67,205,94,205,169,241,202,144,240};
 
-        System.out.println(new Demo198().rob(nums));
+    public int longestCommonSubsequence(String text1, String text2) {
+
+        // 定义dp数据  dp[m][n]  = 最长公共序列
+        int m = text1.length();
+        int n = text2.length();
+
+        int[][] dp = new int[m + 1][n + 1];
+
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                // 相等 上一个相同长度的最大值
+                if(text1.charAt(i-1) == text2.charAt(j-1)) {
+                    dp[i][j] = 1 + dp[i-1][j-1];
+                } else {
+                    // 较长的一个
+                    dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]);
+                }
+            }
+        }
+
+        return dp[m][n];
+    }
+
+
+
+
+
+
+
+
+    public static void main(String[] args) {
+
     }
 }
 
