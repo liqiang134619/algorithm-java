@@ -43,10 +43,13 @@ public class Demo1143 {
     }
 
     private int dp(String text1, int i, String text2, int j) {
+
+        // 最后一位公共序列为0
         if(i == text1.length() || j == text2.length()) {
             return 0;
         }
 
+        // mem优化
         if(mem[i][j] != -1) {
             return mem[i][j];
         }
@@ -54,6 +57,7 @@ public class Demo1143 {
         if(text1.charAt(i) == text2.charAt(j)) {
             mem[i][j] =  1 + dp(text1,i+1,text2,j+1);
         } else {
+            // 不相同的情况 有俩种分支 然后求最大值
             mem[i][j] =  Math.max(dp(text1,i+1,text2,j),dp(text1,i,text2,j+1));
         }
 
@@ -85,6 +89,66 @@ public class Demo1143 {
         return dp[m][n];
 
     }
+
+
+    // 动态规划
+    // 从上到下 从左到右
+    public int longestCommonSubsequence3(String text1, String text2) {
+
+        // 定义dp数据  dp[m][n]  = 最长公共序列
+        int m = text1.length();
+        int n = text2.length();
+
+        int[] dp = new int[n + 1];
+
+        int tmp = 0;
+        for (int i = 1; i <= m; i++) {
+            int pre = 0;
+            for (int j = 1; j <= n; j++) {
+                tmp = dp[j];
+                // 相等 上一个相同长度的最大值
+                if(text1.charAt(i-1) == text2.charAt(j-1)) {
+                    dp[j] = 1 + pre;
+                } else {
+                    // 较长的一个
+                    dp[j] = Math.max(dp[j],dp[j-1]);
+                }
+                // 本次使用上次的dp[i-1][j-1]
+                pre = tmp;
+            }
+
+        }
+
+        return dp[n];
+
+    }
+//
+//    int len1 = text1.length(), len2 = text2.length();
+//    char[] ch1 = text1.toCharArray(), ch2 = text2.toCharArray();
+//    int[] dp = new int[len2 + 1];
+//        for (int i = 1; i <= len1; i++) {
+//        int last = 0; //记录未被更新前的dp[j],也就是二维的dp[i - 1][j - 1]
+//        for (int j = 1; j <= len2; j++) {
+//            int tmp = dp[j];
+//            if (ch1[i - 1] == ch2[j - 1]) {
+//                dp[j] = last + 1;
+//            } else {
+//                dp[j] = Math.max(dp[j - 1],dp[j]);
+//            }
+//            //恢复last
+//            last = tmp;
+//        }
+//    }
+//        return dp[len2];
+
+
+
+
+
+
+
+
+
 
 
 
