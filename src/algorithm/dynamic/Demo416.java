@@ -83,6 +83,40 @@ public class Demo416 {
         System.out.println(b);
     }
 
+
+    // 动态规划 背包问题
+    public boolean canPartition2(int[] nums) {
+        int sum = 0;
+
+        for (int num : nums) {
+            sum += num;
+        }
+
+        if (sum % 2 == 1) {
+            return false;
+        }
+        int target = sum / 2;
+
+        int n = nums.length;
+        boolean[] dp = new boolean[target + 1];
+
+        // 容量为0 默认可以装入
+        dp[0] = true;
+
+        for (int i = 1; i <= n; i++) {
+            for (int j = target; j > 0 ; j--) {
+                if(j < nums[i-1]) {
+                    dp[j] = dp[j-1];
+                } else {
+                    dp[j] = dp[j] || dp[j-nums[i-1]];
+                }
+            }
+
+        }
+
+        return dp[target];
+    }
+
 }
 
 
