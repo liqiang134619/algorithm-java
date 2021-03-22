@@ -1,5 +1,7 @@
 package algorithm.dynamic;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
 import java.time.chrono.MinguoChronology;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -82,8 +84,15 @@ public class Demo279 {
 
 
     public static void main(String[] args) {
-        Demo279 demo279 = new Demo279();
-        System.out.println(demo279.numSquares(48));
+        int a = 10;
+        int b = 3;
+
+        System.out.println(a / 2.5);
+        System.out.println(a/b);
+        System.out.println(a ^ b);
+        a += b--;
+        System.out.println(a++);
+
     }
 }
 

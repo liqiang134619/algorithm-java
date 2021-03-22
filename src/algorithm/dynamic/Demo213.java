@@ -22,11 +22,13 @@ public class Demo213 {
         if(length == 1) {
             return nums[0];
         }
+        // 0 - length -2  和 1 - length -1 两个子列中的最大
         int[] copyOfRange = Arrays.copyOfRange(nums, 0, length - 1);
         int[] ints = Arrays.copyOfRange(nums, 1, length);
 
         return Math.max(ros(copyOfRange),ros(ints));
     }
+
 
     private int ros(int[] ints) {
 
@@ -40,6 +42,7 @@ public class Demo213 {
         int[] dp = new int[n];
         dp[0] = ints[0];
         dp[1] = Math.max(dp[0],ints[1]);
+        // 不抢，或者抢
         for (int i = 2; i < ints.length; i++) {
             dp[i] = Math.max(ints[i] + dp[i-2],dp[i-1]);
         }

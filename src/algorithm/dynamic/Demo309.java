@@ -32,7 +32,7 @@ public class Demo309 {
         }
         int[][] dp = new int[n][3];
 
-        // 初始状态
+        // 初始状
         // 未持有股票
         dp[0][0] = 0;
 
